@@ -1181,7 +1181,7 @@ impl<'de: 'a, 'a, R: Read> de::Deserializer<'de> for &'a mut Deserializer<R> {
                 if let Some(i) = v.to_i64() {
                     visitor.visit_i64(i)
                 } else if let Some(u) = v.to_u64() {
-                    visitor.visit_u64(i)
+                    visitor.visit_u64(u)
                 } else {
                     Err(Error::Syntax(ErrorCode::InvalidValue("integer too large".into())))
                 }
