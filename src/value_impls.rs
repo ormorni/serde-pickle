@@ -230,6 +230,8 @@ impl<'de: 'a, 'a> de::Deserializer<'de> for &'a mut Deserializer {
             Value::Int(v) => {
                 if let Some(i) = v.to_i64() {
                     visitor.visit_i64(i)
+                } else if let Some(u) = v.to_u64() {
+                    visitor.visit_u64(i)
                 } else {
                     Err(Error::Syntax(ErrorCode::InvalidValue("integer too large".into())))
                 }
